@@ -1,0 +1,41 @@
+﻿@if(IsLoading)
+{ 
+    <div class="row cards">
+        @for (int i = 0; i < NumberOfColumns; i++)
+        {
+            <div class="col-sm-@(Math.Floor(12f / NumberOfColumns))">
+                <div class="card card-outline card-info">
+                    <div class="card-header">
+                        <div class="line"></div>
+                    </div>
+                    <div class="card-body" data-simplebar>
+                        <div class="row mb-2">
+                            <div class="col-12">
+                                <div class="line"></div>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-8">
+                                <div class="line"></div>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-6">
+                                <div class="line"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-right">
+                        <div class="line"></div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+@code
+{
+    [Parameter] public int NumberOfColumns { get; set; } = 4;
+    [Parameter] public bool IsLoading { get; set; }
+}
