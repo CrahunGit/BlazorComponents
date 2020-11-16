@@ -26,7 +26,7 @@ Useful blazor components
     </Head>
 </SkeletonTable>
 ```
-
+![skeleton table demo](https://github.com/crahungit/BlazorComponents/blob/master/image.jpg?raw=true)
 
 ## Skeleton cards
 ```html
