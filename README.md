@@ -26,9 +26,10 @@ Useful blazor components
     </Head>
 </SkeletonTable>
 ```
-![skeleton table demo](https://github.com/crahungit/BlazorComponents/blob/master/image.jpg?raw=true)
+![skeleton table demo](https://github.com/crahungit/BlazorComponents/blob/master/table.gif?raw=true)
 
 ## Skeleton cards
 ```html
 <SkeletonCards IsLoading="isLoading"></SkeletonCards>
 ```
+![skeleton cards demo](https://github.com/crahungit/BlazorComponents/blob/master/cards.gif?raw=true)
