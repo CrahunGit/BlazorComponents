@@ -1,7 +1,10 @@
 ﻿<table class="table skeleton">
     <thead>
-        @Head
-    </thead>
+        @if (!IsLoading)
+        {
+            @Head
+        }
+        </thead>
     <tbody>
         @if (!IsLoading)
         {

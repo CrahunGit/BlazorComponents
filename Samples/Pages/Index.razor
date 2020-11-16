@@ -4,7 +4,7 @@
 
 Welcome to your new app.
 
-<button @onclick="@(() => isLoading= false)">Stop loading</button>
+<button @onclick="ToggleButton">@actionButonText</button>
 
 <SkeletonTable NumberOfColumns="4" IsLoading="isLoading">
     <ChildContent>
@@ -42,16 +42,31 @@ Welcome to your new app.
 </SkeletonTable>
 
 <SkeletonCards IsLoading="isLoading">
-    <div class="col-sm-4">
-        <div class="card">
-            <div class="card-header" data-simplebar>
-                <h3 class="card-title">Title</h3>
+    <div class="row cards">
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-header" data-simplebar>
+                    <h3 class="card-title">Title</h3>
+                </div>
+                <div class="card-body" data-simplebar>
+                    This is the body
+                </div>
+                <div class="card-footer text-right">
+                    This is the footer
+                </div>
             </div>
-            <div class="card-body" data-simplebar>
-                This is the body
-            </div>
-            <div class="card-footer text-right">
-                This is the footer
+        </div>
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-header" data-simplebar>
+                    <h3 class="card-title">Title 2</h3>
+                </div>
+                <div class="card-body" data-simplebar>
+                    This is the body 2
+                </div>
+                <div class="card-footer text-right">
+                    This is the footer 2
+                </div>
             </div>
         </div>
     </div>
@@ -59,4 +74,11 @@ Welcome to your new app.
 
 @code{
     private bool isLoading = true;
+    private string actionButonText = "Stop loading";
+
+    private void ToggleButton()
+    {
+        isLoading = !isLoading;
+        actionButonText = isLoading ? "Stop loading" : "Start loading";
+    }
 }
