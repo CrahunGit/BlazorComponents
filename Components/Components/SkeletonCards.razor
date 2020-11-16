@@ -33,9 +33,14 @@
         }
     </div>
 }
+else
+{
+    @ChildContent
+}
 
 @code
 {
     [Parameter] public int NumberOfColumns { get; set; } = 4;
     [Parameter] public bool IsLoading { get; set; }
+    [Parameter] public RenderFragment ChildContent { get; set; }
 }
