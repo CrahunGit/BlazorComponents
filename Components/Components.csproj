@@ -2,6 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <PackageId>CrahunBlazorComponents</PackageId>
+    <Authors>Crahun</Authors>
+    <Product>CrahunBlazorComponents</Product>
+    <Description>Blazor UI Components for common tasks</Description>
+    <RepositoryUrl>https://github.com/CrahunGit/BlazorComponents</RepositoryUrl>
   </PropertyGroup>
 
   
