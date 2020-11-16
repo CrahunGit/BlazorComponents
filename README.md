@@ -27,6 +27,7 @@ Useful blazor components
 </SkeletonTable>
 ```
 
+
 ## Skeleton cards
 ```html
 <SkeletonCards IsLoading="isLoading"></SkeletonCards>
