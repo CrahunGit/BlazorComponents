@@ -1,0 +1,34 @@
+﻿<table class="table skeleton">
+    <thead>
+        @Head
+    </thead>
+    <tbody>
+        @if (!IsLoading)
+        {
+            @ChildContent
+        }
+
+        else
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                <tr class="datagrid__row">
+                    @for (int j = 0; j < NumberOfColumns; j++)
+                    {
+                        <td>
+                            <div class="line"></div>
+                        </td>
+                    }
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+@code
+{
+    [Parameter] public int NumberOfColumns { get; set; } = 1;
+    [Parameter] public RenderFragment Head { get; set; }
+    [Parameter] public RenderFragment ChildContent { get; set; }
+    [Parameter] public bool IsLoading { get; set; }
+}
