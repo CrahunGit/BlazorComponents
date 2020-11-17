@@ -3,7 +3,7 @@ Useful blazor components
 
 ## Skeleton table component
 ```html
-<SkeletonTable NumberOfColumns="4" IsLoading="isLoading">
+<SkeletonTable NumberOfColumns="4" IsLoading="isLoading" ShouldAnimate="true">
     <ChildContent>
         <tr>
             <td>
@@ -30,7 +30,7 @@ Useful blazor components
 
 ## Skeleton cards
 ```html
-<SkeletonCards IsLoading="isLoading">
+<SkeletonCards IsLoading="isLoading" ShouldAnimate="true">
     <div class="col-sm-4">
         <div class="card">
             <div class="card-header" data-simplebar>

@@ -1,19 +1,25 @@
-﻿<table class="table skeleton">
-    <thead>
-        @if (!IsLoading)
-        {
-            @Head
-        }
-        </thead>
-    <tbody>
-        @if (!IsLoading)
-        {
-            @ChildContent
-        }
+﻿@using System.Text
 
-        else
-        {
-            for (int i = 0; i < 3; i++)
+@* Loaded data template *@
+
+<table class="table @GetVisibilityStyle(!IsLoading)">
+    @if (!IsLoading)
+    {
+        <thead>
+            @Head
+        </thead>
+        <tbody>
+            @ChildContent
+        </tbody>
+    }
+</table>
+
+@* Skeleton templates *@
+<table class="table skeleton @GetVisibilityStyle(IsLoading)">
+    @if (IsLoading)
+    {
+        <tbody>
+            @for (int i = 0; i < 3; i++)
             {
                 <tr class="datagrid__row">
                     @for (int j = 0; j < NumberOfColumns; j++)
@@ -24,9 +30,10 @@
                     }
                 </tr>
             }
-        }
-    </tbody>
+        </tbody>
+    }
 </table>
+
 
 @code
 {
@@ -34,4 +41,27 @@
     [Parameter] public RenderFragment Head { get; set; }
     [Parameter] public RenderFragment ChildContent { get; set; }
     [Parameter] public bool IsLoading { get; set; }
+    [Parameter] public bool ShouldAnimate { get; set; }
+
+    private string GetVisibilityStyle(bool isVisible)
+    {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        if (ShouldAnimate)
+        {
+            stringBuilder.Append("animate");
+        }
+
+        if (isVisible)
+        {
+            stringBuilder.Append(" visible");
+        }
+
+        else
+        {
+            stringBuilder.Append(" hidden");
+        }
+
+        return stringBuilder.ToString();
+    }
 }

@@ -1,6 +1,17 @@
-﻿@if(IsLoading)
-{ 
-    <div class="row cards">
+﻿@using System.Text
+
+@* Normal template *@
+<div class="@GetVisibilityStyle(!IsLoading)">
+    @if (!IsLoading)
+    {
+        @ChildContent
+    }
+</div>
+
+@* Skeleton template *@
+<div class="row @GetVisibilityStyle(IsLoading)">
+    @if (IsLoading)
+    {
         @for (int i = 0; i < NumberOfColumns; i++)
         {
             <div class="col-sm-@(Math.Floor(12f / NumberOfColumns))">
@@ -31,16 +42,37 @@
                 </div>
             </div>
         }
-    </div>
-}
-else
-{
-    @ChildContent
-}
+    }
+</div>
+
+
 
 @code
 {
     [Parameter] public int NumberOfColumns { get; set; } = 4;
     [Parameter] public bool IsLoading { get; set; }
     [Parameter] public RenderFragment ChildContent { get; set; }
+    [Parameter] public bool ShouldAnimate { get; set; }
+
+    private string GetVisibilityStyle(bool isVisible)
+    {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        if (ShouldAnimate)
+        {
+            stringBuilder.Append("animate");
+        }
+
+        if (isVisible)
+        {
+            stringBuilder.Append(" visible");
+        }
+
+        else
+        {
+            stringBuilder.Append(" hidden");
+        }
+
+        return stringBuilder.ToString();
+    }
 }

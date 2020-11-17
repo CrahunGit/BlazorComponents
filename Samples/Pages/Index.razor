@@ -6,7 +6,7 @@ Welcome to your new app.
 
 <button @onclick="ToggleButton">@actionButonText</button>
 
-<SkeletonTable NumberOfColumns="4" IsLoading="isLoading">
+<SkeletonTable NumberOfColumns="4" IsLoading="isLoading" ShouldAnimate="true">
     <ChildContent>
         <tr>
             <td>
@@ -41,7 +41,7 @@ Welcome to your new app.
     </Head>
 </SkeletonTable>
 
-<SkeletonCards IsLoading="isLoading">
+<SkeletonCards IsLoading="isLoading" ShouldAnimate="true">
     <div class="row cards">
         <div class="col-sm-4">
             <div class="card">

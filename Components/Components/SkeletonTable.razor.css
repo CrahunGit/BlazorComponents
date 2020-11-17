@@ -23,6 +23,18 @@
     animation: shine-lines 1.6s infinite linear;
 }
 
+.animate{
+    transition: opacity .2s ease-in
+}
+
+.visible{
+    opacity: 1
+}
+
+.hidden {
+    opacity: 0
+}
+
 @keyframes shine-lines {
     0% {
         background-position: -100%;
