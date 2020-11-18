@@ -1,6 +1,13 @@
 # BlazorComponents
 Useful blazor components
 
+## Installation
+You can install package from nuget
+
+```
+<PackageReference Include="CrahunBlazorComponents" Version="1.0.3" />
+```
+
 ## Skeleton table component
 ```html
 <SkeletonTable NumberOfColumns="4" IsLoading="isLoading" ShouldAnimate="true">
