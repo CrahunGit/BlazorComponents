@@ -8,9 +8,9 @@
     <Description>Blazor UI Components for common tasks</Description>
     <RepositoryUrl>https://github.com/CrahunGit/BlazorComponents</RepositoryUrl>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-    <AssemblyVersion>1.0.2.0</AssemblyVersion>
+    <AssemblyVersion>1.0.4.0</AssemblyVersion>
     <FileVersion>1.0.3.0</FileVersion>
-    <Version>1.0.3</Version>
+    <Version>1.0.4</Version>
   </PropertyGroup>
 
   
@@ -20,10 +20,6 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\" />
   </ItemGroup>
 
   <ItemGroup>
