@@ -19,16 +19,23 @@
     @if (IsLoading)
     {
         <tbody>
-            @for (int i = 0; i < 3; i++)
+            @if (SkeletonTemplate is null)
             {
-                <tr class="datagrid__row">
-                    @for (int j = 0; j < NumberOfColumns; j++)
-                    {
-                        <td>
-                            <div class="line"></div>
-                        </td>
-                    }
-                </tr>
+                @for (int i = 0; i < 3; i++)
+                {
+                    <tr class="datagrid__row">
+                        @for (int j = 0; j < NumberOfColumns; j++)
+                        {
+                            <td>
+                                <div class="line"></div>
+                            </td>
+                        }
+                    </tr>
+                }
+            }
+            else
+            {
+                @SkeletonTemplate
             }
         </tbody>
     }
@@ -40,6 +47,7 @@
     [Parameter] public int NumberOfColumns { get; set; } = 1;
     [Parameter] public RenderFragment Head { get; set; }
     [Parameter] public RenderFragment ChildContent { get; set; }
+    [Parameter] public RenderFragment SkeletonTemplate { get; set; }
     [Parameter] public bool IsLoading { get; set; }
     [Parameter] public bool ShouldAnimate { get; set; }
 

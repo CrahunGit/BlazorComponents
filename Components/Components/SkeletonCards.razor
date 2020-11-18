@@ -14,33 +14,40 @@
     {
         @for (int i = 0; i < NumberOfColumns; i++)
         {
-            <div class="col-sm-@(Math.Floor(12f / NumberOfColumns))">
-                <div class="card card-info">
-                    <div class="card-header">
-                        <div class="line"></div>
-                    </div>
-                    <div class="card-body" data-simplebar>
-                        <div class="row mb-2">
-                            <div class="col-12">
-                                <div class="line"></div>
+            if (SkeletonTemplate is null)
+            {
+                <div class="col-sm-@(Math.Floor(12f / NumberOfColumns))">
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <div class="line"></div>
+                        </div>
+                        <div class="card-body" data-simplebar>
+                            <div class="row mb-2">
+                                <div class="col-12">
+                                    <div class="line"></div>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-8">
+                                    <div class="line"></div>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-6">
+                                    <div class="line"></div>
+                                </div>
                             </div>
                         </div>
-                        <div class="row mb-2">
-                            <div class="col-8">
-                                <div class="line"></div>
-                            </div>
+                        <div class="card-footer text-right">
+                            <div class="line"></div>
                         </div>
-                        <div class="row mb-2">
-                            <div class="col-6">
-                                <div class="line"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer text-right">
-                        <div class="line"></div>
                     </div>
                 </div>
-            </div>
+            }
+            else
+            {
+                @SkeletonTemplate
+            }
         }
     }
 </div>
@@ -52,6 +59,7 @@
     [Parameter] public int NumberOfColumns { get; set; } = 4;
     [Parameter] public bool IsLoading { get; set; }
     [Parameter] public RenderFragment ChildContent { get; set; }
+    [Parameter] public RenderFragment SkeletonTemplate { get; set; }
     [Parameter] public bool ShouldAnimate { get; set; }
 
     private string GetVisibilityStyle(bool isVisible)
