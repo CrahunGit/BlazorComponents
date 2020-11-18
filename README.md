@@ -1,6 +1,20 @@
 # BlazorComponents
 Useful blazor components
 
+## Installation
+You can install package from nuget
+
+```
+<PackageReference Include="CrahunBlazorComponents" Version="1.0.3" />
+```
+
+## Add bootstrap 4 Css
+This library relies on bootstrap 4 so if need it you can link it from the library
+
+```html
+<link href="_content/CrahunBlazorComponents/bootstrap/bootstrap.min.css" rel="stylesheet" />
+```
+
 ## Skeleton table component
 ```html
 <SkeletonTable NumberOfColumns="4" IsLoading="isLoading" ShouldAnimate="true">
