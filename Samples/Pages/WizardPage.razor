@@ -1,14 +1,11 @@
 ﻿@page "/wizard"
 
-<Wizard Title="Wizard" OnFinished="@(() => Console.WriteLine("Finished"))">
-    <Step>
-        <div>Hola paso 1</div>
-    </Step>
-    <Step>
-        <div>Adios paso 2</div>
-    </Step>
-</Wizard>
+@code { 
+    [CascadingParameter]
+    public IModalService Modal { get; set; }
 
-@code {
-
+    protected override void OnAfterRender(bool firstRender)
+    {
+        var moviesModal = Modal.Show<WizardTemplate>("Starters");
+    }
 }
