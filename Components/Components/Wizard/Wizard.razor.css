@@ -440,7 +440,7 @@ h2.title {
   padding: 20px 15px;
 }
 .wizard-card-no-shadow .wizard-footer {
-  padding: 0 15px;
+  padding: 0;
 }
 .wizard-card-no-shadow .wizard-footer .checkbox {
   margin-top: 16px;
@@ -1455,7 +1455,6 @@ select.form-control[multiple], .form-group.is-focused select.form-control[multip
 
 .wizard-footer {
   position: relative;
-  bottom: 20px;
   right: 0px;
   width: 100%;
   color: #FFFFFF;

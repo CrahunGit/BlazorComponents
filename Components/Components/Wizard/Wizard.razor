@@ -46,19 +46,19 @@
 
     <div class="wizard-footer">
         <div class="pull-left">
-            <button class="btn-wizard btn-wizard-previous btn-wizard-fill btn-wizard-default btn-wizard-wd" type="button" @onclick="@PreviousPage" disabled="@IsFirstStep()">Previous</button>
+            <button class="btn-wizard btn-wizard-previous btn-wizard-fill btn-wizard-@PreviousButtonClass.ToString().ToLower() btn-wizard-wd" type="button" @onclick="@PreviousPage" disabled="@IsFirstStep()">Previous</button>
         </div>
 
         @if (IsLastStep())
         {
             <div class="pull-right">
-                <button class="btn-wizard btn-wizard-next btn-wizard-fill btn-wizard-danger btn-wizard-wd" type="button" @onclick="@Finished">Finished</button>
+                <button class="btn-wizard btn-wizard-next btn-wizard-fill btn-wizard-@FinishButtonClass.ToString().ToLower() btn-wizard-wd" type="button" @onclick="@Finished">Finished</button>
             </div>
         }
         else
         {
             <div class="pull-right">
-                <button class="btn-wizard btn-wizard-next btn-wizard-fill btn-wizard-danger btn-wizard-wd" type="button" @onclick="@NextPage">Next</button>
+                <button class="btn-wizard btn-wizard-next btn-wizard-fill btn-wizard-@NextButtonClass.ToString().ToLower() btn-wizard-wd" type="button" @onclick="@NextPage">Next</button>
             </div>
         }
         <div class="clearfix"></div>
@@ -66,11 +66,12 @@
 </div>
 
 @code {
+    #region Parameters
     [Parameter]
     public string Title { get; set; }
 
     [Parameter]
-    public Colors Theme { get; set; } = Colors.Red;
+    public Theme Theme { get; set; } = Theme.Red;
 
     [Parameter]
     public RenderFragment ChildContent { get; set; }
@@ -87,6 +88,16 @@
     [Parameter]
     public EventCallback<int> OnSelectedStep { get; set; }
 
+    [Parameter]
+    public Buttons PreviousButtonClass { get; set; } = Buttons.Default;
+
+    [Parameter]
+    public Buttons NextButtonClass { get; set; } = Buttons.Danger;
+
+    [Parameter]
+    public Buttons FinishButtonClass { get; set; } = Buttons.Danger;
+    #endregion
+    #region Instance variables
     private List<Step> Steps = new List<Step>();
     private int currentStep = 1;
 
@@ -95,7 +106,8 @@
 
     private static int instanceNumber;
     private string Id = $"wizard{instanceNumber}";
-
+    #endregion
+    #region Methods
     public void AddStep(Step step)
     {
         Steps.Add(step);
@@ -148,7 +160,8 @@
         var module = await Module;
         await module.InvokeVoidAsync("refreshAnimation", Id, currentStep - 1);
     }
-
+    #endregion
+    #region Lifercycle
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         base.OnAfterRender(firstRender);
@@ -172,4 +185,5 @@
     {
         Wizard.instanceNumber++;
     }
+    #endregion
 }
