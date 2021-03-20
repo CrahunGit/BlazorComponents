@@ -84,6 +84,9 @@
     [Parameter]
     public EventCallback OnFinished { get; set; }
 
+    [Parameter]
+    public EventCallback<int> OnSelectedStep { get; set; }
+
     private List<Step> Steps = new List<Step>();
     private int currentStep = 1;
 
@@ -101,6 +104,18 @@
 
     public void SetActivePage(int currentIndex)
     {
+        if(Steps.Count < currentIndex)
+        {
+            throw new InvalidOperationException("Tried to navigate to non existing step index");
+        }
+
+        OnSelectedStep.InvokeAsync(currentIndex);
+
+        if (currentIndex == currentStep)
+        {
+            return;
+        }
+
         currentStep = currentIndex;
         _ = RefreshAnimation();
         StateHasChanged();
@@ -111,7 +126,6 @@
         currentStep++;
         _ = RefreshAnimation();
         OnNext.InvokeAsync();
-        StateHasChanged();
     }
 
     public void OnPreviousEvent()
@@ -119,13 +133,11 @@
         currentStep--;
         _ = RefreshAnimation();
         OnPrevious.InvokeAsync();
-        StateHasChanged();
     }
 
     public void OnFinishedEvent()
     {
         OnFinished.InvokeAsync();
-        StateHasChanged();
     }
 
     public async Task RefreshAnimation()
@@ -134,15 +146,14 @@
         await module.InvokeVoidAsync("refreshAnimation", Id, currentStep - 1);
     }
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    protected override void OnAfterRender(bool firstRender)
     {
         base.OnAfterRender(firstRender);
 
         if (firstRender)
         {
             currentStep = 1;
-            await RefreshAnimation();
-            StateHasChanged();
+            _ = RefreshAnimation();
         }
     }
 
