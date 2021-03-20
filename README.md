@@ -60,5 +60,5 @@ This library relies on bootstrap 4 so if need it you can link it from the librar
     </div>
 </SkeletonCards>
 ```
-<img src="https://github.com/crahungit/BlazorComponents/blob/master/cards.gif?raw=true?raw=true" width="100%" />
+<img src="https://github.com/crahungit/BlazorComponents/blob/master/cards.gif?raw=true" width="100%" />
 
