@@ -1,7 +1,7 @@
 ﻿@implements IAsyncDisposable
 @inject IJSRuntime jsRuntime
 
-<CascadingValue Value="this" Name="Parent" IsFixed="false">
+<CascadingValue Value="this" Name="Parent" IsFixed="true">
     @ChildContent
 </CascadingValue>
 
@@ -67,9 +67,6 @@
 
 @code {
     [Parameter]
-    public string Id { get; set; } = "wizard";
-
-    [Parameter]
     public string Title { get; set; }
 
     [Parameter]
@@ -95,6 +92,9 @@
 
     private Task<IJSObjectReference> _module;
     private Task<IJSObjectReference> Module => _module ??= jsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/CrahunBlazorComponents/wizard/wizard.js").AsTask();
+
+    private static int instanceNumber;
+    private string Id = $"wizard{instanceNumber}";
 
     public void AddStep(Step step)
     {
@@ -166,5 +166,10 @@
             var module = await _module;
             await module.DisposeAsync();
         }
+    }
+
+    public Wizard()
+    {
+        Wizard.instanceNumber++;
     }
 }

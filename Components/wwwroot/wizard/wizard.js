@@ -32,10 +32,10 @@
         vertical_level = vertical_level * 38;
     }
 
-    document.querySelector('.moving-tab').style.width = step_width + 'px';
-    document.querySelector('.moving-tab').style.height = height + 'px';
-    document.querySelector('.moving-tab').style.transform = 'translate3d(' + move_distance + 'px, ' + vertical_level + 'px, 0)';
-    document.querySelector('.moving-tab').style.transition = 'all 0.5s cubic-bezier(0.29, 1.42, 0.79, 1)';
-    document.querySelector('.moving-tab').textContent = text;
+    document.querySelector(`#${wizardId} .moving-tab`).style.width = step_width + 'px';
+    document.querySelector(`#${wizardId} .moving-tab`).style.height = height + 'px';
+    document.querySelector(`#${wizardId} .moving-tab`).style.transform = 'translate3d(' + move_distance + 'px, ' + vertical_level + 'px, 0)';
+    document.querySelector(`#${wizardId} .moving-tab`).style.transition = 'all 0.5s cubic-bezier(0.29, 1.42, 0.79, 1)';
+    document.querySelector(`#${wizardId} .moving-tab`).textContent = text;
 
 }
