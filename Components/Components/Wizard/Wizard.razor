@@ -5,7 +5,7 @@
     @ChildContent
 </CascadingValue>
 
-<div class="card wizard-card-no-shadow" data-color="@ColorTheme.ToString().ToLower()" id="@Id" style="border: none !important">
+<div class="card wizard-card-no-shadow" data-color="@Theme.ToString().ToLower()" id="@Id" style="border: none !important">
     <div class="wizard-header">
         <h3 class="wizard-title h3-wizard">@Title</h3>
     </div>
@@ -70,7 +70,7 @@
     public string Title { get; set; }
 
     [Parameter]
-    public Colors ColorTheme { get; set; } = Colors.Red;
+    public Colors Theme { get; set; } = Colors.Red;
 
     [Parameter]
     public RenderFragment ChildContent { get; set; }
