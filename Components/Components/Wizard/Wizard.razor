@@ -5,7 +5,7 @@
     @ChildContent
 </CascadingValue>
 
-<div class="card wizard-card-no-shadow" data-color="red" id="@Id" style="border: none !important">
+<div class="card wizard-card-no-shadow" data-color="@ColorThene" id="@Id" style="border: none !important">
     <div class="wizard-header">
         <h3 class="wizard-title h3-wizard">@Title</h3>
     </div>
@@ -67,10 +67,13 @@
 
 @code {
     [Parameter]
-    public string Id { get; set; }
+    public string Id { get; set; } = "wizard";
 
     [Parameter]
     public string Title { get; set; }
+
+    [Parameter]
+    public string ColorThene { get; set; } = "red";
 
     [Parameter]
     public RenderFragment ChildContent { get; set; }
