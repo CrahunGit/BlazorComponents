@@ -5,7 +5,7 @@ Useful blazor components
 You can install package from nuget
 
 ```
-<PackageReference Include="CrahunBlazorComponents" Version="1.0.3" />
+<PackageReference Include="CrahunBlazorComponents" Version="1.1.1" />
 ```
 
 ## Add bootstrap 4 Css
@@ -40,7 +40,7 @@ This library relies on bootstrap 4 so if need it you can link it from the librar
     </Head>
 </SkeletonTable>
 ```
-![skeleton table demo](https://github.com/crahungit/BlazorComponents/blob/master/table.gif?raw=true)
+![skeleton table demo](https://github.com/crahungit/BlazorComponents/blob/master/table.gif?raw=true =75%x)
 
 ## Skeleton cards
 ```html
@@ -60,4 +60,4 @@ This library relies on bootstrap 4 so if need it you can link it from the librar
     </div>
 </SkeletonCards>
 ```
-![skeleton cards demo](https://github.com/crahungit/BlazorComponents/blob/master/cards.gif?raw=true)
+![skeleton cards demo](https://github.com/crahungit/BlazorComponents/blob/master/cards.gif?raw=true =75%x)
