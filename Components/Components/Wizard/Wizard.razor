@@ -1,11 +1,11 @@
 ﻿@implements IAsyncDisposable
 @inject IJSRuntime jsRuntime
 
-<CascadingValue Value="this" Name="Parent" IsFixed="true">
+<CascadingValue Value="this" Name="Parent" IsFixed="false">
     @ChildContent
 </CascadingValue>
 
-<div class="card wizard-card-no-shadow" data-color="@ColorThene" id="@Id" style="border: none !important">
+<div class="card wizard-card-no-shadow" data-color="@ColorTheme.ToString().ToLower()" id="@Id" style="border: none !important">
     <div class="wizard-header">
         <h3 class="wizard-title h3-wizard">@Title</h3>
     </div>
@@ -46,19 +46,19 @@
 
     <div class="wizard-footer">
         <div class="pull-left">
-            <button class="btn-wizard btn-wizard-previous btn-wizard-fill btn-wizard-default btn-wizard-wd" type="button" @onclick="@OnPreviousEvent" disabled="@IsFirstStep()">Previous</button>
+            <button class="btn-wizard btn-wizard-previous btn-wizard-fill btn-wizard-default btn-wizard-wd" type="button" @onclick="@PreviousPage" disabled="@IsFirstStep()">Previous</button>
         </div>
 
         @if (IsLastStep())
         {
             <div class="pull-right">
-                <button class="btn-wizard btn-wizard-next btn-wizard-fill btn-wizard-danger btn-wizard-wd" type="button" @onclick="@OnFinished">Finished</button>
+                <button class="btn-wizard btn-wizard-next btn-wizard-fill btn-wizard-danger btn-wizard-wd" type="button" @onclick="@Finished">Finished</button>
             </div>
         }
         else
         {
             <div class="pull-right">
-                <button class="btn-wizard btn-wizard-next btn-wizard-fill btn-wizard-danger btn-wizard-wd" type="button" @onclick="@OnNextEvent">Next</button>
+                <button class="btn-wizard btn-wizard-next btn-wizard-fill btn-wizard-danger btn-wizard-wd" type="button" @onclick="@NextPage">Next</button>
             </div>
         }
         <div class="clearfix"></div>
@@ -73,7 +73,7 @@
     public string Title { get; set; }
 
     [Parameter]
-    public string ColorThene { get; set; } = "red";
+    public Colors ColorTheme { get; set; } = Colors.Red;
 
     [Parameter]
     public RenderFragment ChildContent { get; set; }
@@ -124,21 +124,21 @@
         StateHasChanged();
     }
 
-    public void OnNextEvent()
+    public void NextPage()
     {
         currentStep++;
         _ = RefreshAnimation();
         OnNext.InvokeAsync();
     }
 
-    public void OnPreviousEvent()
+    public void PreviousPage()
     {
         currentStep--;
         _ = RefreshAnimation();
         OnPrevious.InvokeAsync();
     }
 
-    public void OnFinishedEvent()
+    public void Finished()
     {
         OnFinished.InvokeAsync();
     }
@@ -149,14 +149,13 @@
         await module.InvokeVoidAsync("refreshAnimation", Id, currentStep - 1);
     }
 
-    protected override void OnAfterRender(bool firstRender)
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         base.OnAfterRender(firstRender);
 
         if (firstRender)
         {
-            currentStep = 1;
-            _ = RefreshAnimation();
+            await RefreshAnimation();
         }
     }
 
