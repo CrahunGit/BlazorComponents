@@ -21,12 +21,6 @@
     float: right !important;
 }
 
-.nav-pills > li > a.active-nav,
-.nav-pills > li > a.active-nav:hover {
-    background-color: #f44336;
-    color: #FFFFFF !important;
-}
-
 body {
     background-color: #E5E5E5;
     color: #3C4858;

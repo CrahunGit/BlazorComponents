@@ -1,8 +1,11 @@
-﻿<CascadingValue Value="this" Name="Parent" IsFixed="true">
+﻿@implements IAsyncDisposable
+@inject IJSRuntime jsRuntime
+
+<CascadingValue Value="this" Name="Parent" IsFixed="true">
     @ChildContent
 </CascadingValue>
 
-<div class="card wizard-card-no-shadow" data-color="red" id="wizard">
+<div class="card wizard-card-no-shadow" data-color="red" id="@Id" style="border: none !important">
     <div class="wizard-header">
         <h3 class="wizard-title h3-wizard">@Title</h3>
     </div>
@@ -15,12 +18,14 @@
                         int i_local = i;
 
                         <li class="nav-item" @key="i">
-                            <a class="nav-link @(currentStep == i ? "active-nav" : "")"
+                            <a class="nav-link"
                                style="cursor: pointer" @onclick="@(() => SetActivePage(i_local))">Step @i</a>
                         </li>
                     }
                 }
             </ul>
+            <div class="moving-tab"></div>
+
         </div>
         <div id="container-fluid">
             <div id="tab-content">
@@ -61,6 +66,8 @@
 </div>
 
 @code {
+    [Parameter]
+    public string Id { get; set; }
 
     [Parameter]
     public string Title { get; set; }
@@ -80,6 +87,9 @@
     private List<Step> Steps = new List<Step>();
     private int currentStep = 1;
 
+    private Task<IJSObjectReference> _module;
+    private Task<IJSObjectReference> Module => _module ??= jsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/CrahunBlazorComponents/wizard/wizard.js").AsTask();
+
     public void AddStep(Step step)
     {
         Steps.Add(step);
@@ -92,12 +102,14 @@
     public void SetActivePage(int currentIndex)
     {
         currentStep = currentIndex;
+        _ = RefreshAnimation();
         StateHasChanged();
     }
 
     public void OnNextEvent()
     {
         currentStep++;
+        _ = RefreshAnimation();
         OnNext.InvokeAsync();
         StateHasChanged();
     }
@@ -105,6 +117,7 @@
     public void OnPreviousEvent()
     {
         currentStep--;
+        _ = RefreshAnimation();
         OnPrevious.InvokeAsync();
         StateHasChanged();
     }
@@ -115,12 +128,30 @@
         StateHasChanged();
     }
 
-    protected override void OnAfterRender(bool firstRender)
+    public async Task RefreshAnimation()
     {
+        var module = await Module;
+        await module.InvokeVoidAsync("refreshAnimation", Id, currentStep - 1);
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
         if (firstRender)
         {
             currentStep = 1;
+            await RefreshAnimation();
             StateHasChanged();
+        }
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_module != null)
+        {
+            var module = await _module;
+            await module.DisposeAsync();
         }
     }
 }
