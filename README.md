@@ -40,7 +40,7 @@ This library relies on bootstrap 4 so if need it you can link it from the librar
     </Head>
 </SkeletonTable>
 ```
-<img src="https://github.com/crahungit/BlazorComponents/blob/master/table.gif?raw=true" width="75%" />
+<img src="https://github.com/crahungit/BlazorComponents/blob/master/table.gif?raw=true" width="100%" />
 
 ## Skeleton cards
 ```html
@@ -60,5 +60,5 @@ This library relies on bootstrap 4 so if need it you can link it from the librar
     </div>
 </SkeletonCards>
 ```
-<img src="https://github.com/crahungit/BlazorComponents/blob/master/cards.gif?raw=true?raw=true" width="75%" />
+<img src="https://github.com/crahungit/BlazorComponents/blob/master/cards.gif?raw=true?raw=true" width="100%" />
 
