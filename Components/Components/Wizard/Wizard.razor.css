@@ -450,7 +450,7 @@ h2.title {
 }
 .wizard-card-no-shadow .wizard-header {
   text-align: center;
-  padding: 25px 0 35px;
+  padding: 10px 0;
 }
 .wizard-card-no-shadow .wizard-header h5 {
   margin: 5px 0 0;
@@ -1460,7 +1460,7 @@ select.form-control[multiple], .form-group.is-focused select.form-control[multip
   color: #FFFFFF;
   z-index: 4;
   text-align: right;
-  margin-top: 60px;
+  margin-top: 20px;
   text-shadow: 0 0px 1px black;
 }
 .wizard-footer a {

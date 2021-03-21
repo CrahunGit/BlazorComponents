@@ -1,13 +1,8 @@
 ﻿using Microsoft.AspNetCore.Components;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Components.Components.Wizard
 {
-    public class Step: ComponentBase
+    public class Step : ComponentBase
     {
         [Parameter]
         public string Name { get; set; }

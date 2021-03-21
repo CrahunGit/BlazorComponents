@@ -16,10 +16,11 @@
                     for (int i = 1; i <= Steps.Count; i++)
                     {
                         int i_local = i;
+                        var step = Steps[i - 1];
 
-                        <li class="nav-item" @key="i">
+                        <li class="nav-item" @key="step">
                             <a class="nav-link"
-                               style="cursor: pointer" @onclick="@(() => SetActivePage(i_local))">@(Steps[i_local - 1]?.Name ?? "Step")</a>
+                               style="cursor: pointer" @onclick="@(() => SetActivePage(i_local))">@(step?.Name ?? "Step")</a>
                         </li>
                     }
                 }
@@ -117,14 +118,14 @@
     public bool IsFirstStep() => currentStep == 1;
     public bool IsLastStep() => currentStep == Steps.Count;
 
-    public void SetActivePage(int currentIndex)
+    public async Task SetActivePage(int currentIndex)
     {
         if(Steps.Count < currentIndex)
         {
             throw new InvalidOperationException("Tried to navigate to non existing step index");
         }
 
-        OnSelectedStep.InvokeAsync(currentIndex);
+        await OnSelectedStep.InvokeAsync(currentIndex);
 
         if (currentIndex == currentStep)
         {
@@ -132,27 +133,24 @@
         }
 
         currentStep = currentIndex;
-        _ = RefreshAnimation();
         StateHasChanged();
     }
 
-    public void NextPage()
+    public async Task NextPage()
     {
         currentStep++;
-        _ = RefreshAnimation();
-        OnNext.InvokeAsync();
+        await OnNext.InvokeAsync();
     }
 
-    public void PreviousPage()
+    public async Task PreviousPage()
     {
         currentStep--;
-        _ = RefreshAnimation();
-        OnPrevious.InvokeAsync();
+        await OnPrevious.InvokeAsync();
     }
 
-    public void Finished()
+    public async Task Finished()
     {
-        OnFinished.InvokeAsync();
+        await OnFinished.InvokeAsync();
     }
 
     public async Task RefreshAnimation()
@@ -164,12 +162,7 @@
     #region Lifercycle
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        base.OnAfterRender(firstRender);
-
-        if (firstRender)
-        {
-            await RefreshAnimation();
-        }
+        await RefreshAnimation();
     }
 
     public async ValueTask DisposeAsync()
