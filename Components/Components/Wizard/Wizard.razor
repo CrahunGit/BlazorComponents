@@ -19,7 +19,7 @@
 
                         <li class="nav-item" @key="i">
                             <a class="nav-link"
-                               style="cursor: pointer" @onclick="@(() => SetActivePage(i_local))">Step @i</a>
+                               style="cursor: pointer" @onclick="@(() => SetActivePage(i_local))">@(Steps[i_local - 1]?.Name ?? "Step")</a>
                         </li>
                     }
                 }
