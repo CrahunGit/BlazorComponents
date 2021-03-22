@@ -7,6 +7,7 @@
     let text = document.querySelectorAll(`#${wizardId} .nav-item`)[index].textContent;
     let index_temp = index;
     let vertical_level = 0;
+    let li_width = 100 / total_steps;
 
     const mobile_device = document.body.clientWidth < 600 && total_steps > 3;
 
@@ -15,6 +16,11 @@
         index_temp = index % 2;
         li_width = 50;
     }
+
+    //size steps
+    document.querySelectorAll(`#${wizardId} .nav li`).forEach(element => {
+        element.style.width = li_width + '%';
+    });
 
     const step_width = move_distance;
     move_distance = move_distance * index_temp;
@@ -37,5 +43,4 @@
     document.querySelector(`#${wizardId} .moving-tab`).style.transform = 'translate3d(' + move_distance + 'px, ' + vertical_level + 'px, 0)';
     document.querySelector(`#${wizardId} .moving-tab`).style.transition = 'all 0.5s cubic-bezier(0.29, 1.42, 0.79, 1)';
     document.querySelector(`#${wizardId} .moving-tab`).textContent = text;
-
 }
