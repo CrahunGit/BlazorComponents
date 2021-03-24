@@ -1,5 +1,6 @@
 ﻿@implements IAsyncDisposable
 @inject IJSRuntime jsRuntime
+@inject ILogger<Wizard> logger 
 
 <CascadingValue Value="this" Name="Parent" IsFixed="true">
     @ChildContent
@@ -122,7 +123,9 @@
     {
         if(Steps.Count < currentIndex)
         {
-            throw new InvalidOperationException("Tried to navigate to non existing step index");
+            string error = "Tried to navigate to non existing step index";
+            logger.LogCritical(error);
+            throw new InvalidOperationException(error);
         }
 
         await OnSelectedStep.InvokeAsync(currentIndex);
@@ -138,12 +141,26 @@
 
     public async Task NextPage()
     {
+        if (IsLastStep())
+        {
+            string error = "Current page is the last one. You can not go to the next";
+            logger.LogCritical(error);
+            throw new InvalidOperationException(error);
+        }
+
         currentStep++;
         await OnNext.InvokeAsync();
     }
 
     public async Task PreviousPage()
     {
+        if (IsFirstStep())
+        {
+            string error = "Current page is the first one. You can not go to the previous";
+            logger.LogCritical(error);
+            throw new InvalidOperationException(error);
+        }
+
         currentStep--;
         await OnPrevious.InvokeAsync();
     }
