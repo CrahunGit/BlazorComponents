@@ -11,6 +11,7 @@ You can install package from nuget
 ## Add bootstrap 4 Css
 This library relies on bootstrap 4 so if need it you can link it from the library
 
+
 ```html
 <link href="_content/CrahunBlazorComponents/bootstrap/bootstrap.min.css" rel="stylesheet" />
 ```
@@ -42,6 +43,8 @@ This library relies on bootstrap 4 so if need it you can link it from the librar
 ```
 <img src="https://github.com/crahungit/BlazorComponents/blob/master/table.gif?raw=true" width="100%" />
 
+\
+&nbsp;
 ## Skeleton cards
 ```html
 <SkeletonCards IsLoading="isLoading" ShouldAnimate="true">
@@ -62,3 +65,8 @@ This library relies on bootstrap 4 so if need it you can link it from the librar
 ```
 <img src="https://github.com/crahungit/BlazorComponents/blob/master/cards.gif?raw=true" width="100%" />
 
+\
+&nbsp;
+## Wizard Component
+The wizard component Will show steps in certain order. Steps can contains any othe components, html, whatever you want.
+<img src="https://github.com/crahungit/BlazorComponents/blob/master/wizard.gif?raw=true" width="100%" />
