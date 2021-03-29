@@ -48,19 +48,19 @@
 
     <div class="wizard-footer">
         <div class="pull-left">
-            <button class="btn-wizard btn-wizard-previous btn-wizard-fill btn-wizard-@PreviousButtonClass.ToString().ToLower() btn-wizard-wd" type="button" @onclick="@PreviousPage" disabled="@IsFirstStep()">Previous</button>
+            <button class="btn-wizard btn-wizard-previous btn-wizard-fill btn-wizard-@PreviousButtonClass.ToString().ToLower() btn-wizard-wd" type="button" @onclick="@PreviousPage" disabled="@IsFirstStep()">@PreviousButtonText</button>
         </div>
 
         @if (IsLastStep())
         {
             <div class="pull-right">
-                <button class="btn-wizard btn-wizard-next btn-wizard-fill btn-wizard-@FinishButtonClass.ToString().ToLower() btn-wizard-wd" type="button" @onclick="@Finished">Finished</button>
+                <button class="btn-wizard btn-wizard-next btn-wizard-fill btn-wizard-@FinishButtonClass.ToString().ToLower() btn-wizard-wd" type="button" @onclick="@Finished">@FinishedButtonText</button>
             </div>
         }
         else
         {
             <div class="pull-right">
-                <button class="btn-wizard btn-wizard-next btn-wizard-fill btn-wizard-@NextButtonClass.ToString().ToLower() btn-wizard-wd" type="button" @onclick="@NextPage">Next</button>
+                <button class="btn-wizard btn-wizard-next btn-wizard-fill btn-wizard-@NextButtonClass.ToString().ToLower() btn-wizard-wd" type="button" @onclick="@NextPage">@NextButtonText</button>
             </div>
         }
         <div class="clearfix"></div>
@@ -98,6 +98,16 @@
 
     [Parameter]
     public Buttons FinishButtonClass { get; set; } = Buttons.Danger;
+
+    [Parameter]
+    public string NextButtonText { get; set; } = "Next";
+
+    [Parameter]
+    public string PreviousButtonText { get; set; } = "Previous";
+
+    [Parameter]
+    public string FinishedButtonText { get; set; } = "Finished";
+
     #endregion
     #region Instance variables
     private List<Step> Steps = new List<Step>();
