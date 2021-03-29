@@ -70,3 +70,106 @@ This library relies on bootstrap 4 so if need it you can link it from the librar
 ## Wizard Component
 The wizard component Will show steps in certain order. Steps can contains any othe components, html, whatever you want.
 <img src="https://github.com/crahungit/BlazorComponents/blob/master/wizard.gif?raw=true" width="100%" />
+
+### Usage
+```html
+<Wizard Title="Wizard" Theme="Theme.Orange">
+    <Step Name="Step 1">
+        <div>Hi step 1</div>
+    </Step>
+    <Step Name="Step 2">
+        <div>Hi step 2</div>
+    </Step>
+    <Step>
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Name</td>
+                </tr>
+            </tbody>
+        </table>
+    </Step>
+    <Step Name="Step 3">
+        <div>Adios paso 4</div>
+    </Step>
+    <Step>
+        <div>Hi step 3</div>
+    </Step>
+</Wizard>
+```
+
+### Available parameters and customizations
+First you can customize the wizard colors with de Theme enum
+```csharp
+public enum Theme
+{
+    Purple,
+    Green,
+    Blue,
+    Orange,
+    Red
+}
+```
+
+You can customize the buttons meaning and color with the Buttons enum
+```csharp
+public enum Buttons
+{
+    Default,
+    Simple,
+    Primary,
+    Info,
+    Success,
+    Warning,
+    Danger
+}
+```
+### Callback events on buttons/tabs
+```csharp
+[Parameter]
+public EventCallback OnPrevious { get; set; }
+
+[Parameter]
+public EventCallback OnNext { get; set; }
+
+[Parameter]
+public EventCallback OnFinished { get; set; }
+
+[Parameter]
+public EventCallback<int> OnSelectedStep { get; set; }
+```
+### Buttons appearence customization
+```csharp
+[Parameter]
+public Buttons PreviousButtonClass { get; set; } = Buttons.Default;
+
+[Parameter]
+public Buttons NextButtonClass { get; set; } = Buttons.Danger;
+
+[Parameter]
+public Buttons FinishButtonClass { get; set; } = Buttons.Danger;
+
+[Parameter]
+public string NextButtonText { get; set; } = "Next";
+
+[Parameter]
+public string PreviousButtonText { get; set; } = "Previous";
+
+[Parameter]
+public string FinishedButtonText { get; set; } = "Finished";
+```
+### Available public methods
+```chsarp
+IsFirstStep()
+IsLastStep()
+SetActivePage(int currentIndex)
+NextPage()
+PreviousPage()
+```
