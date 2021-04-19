@@ -16,6 +16,11 @@ This library relies on bootstrap 4 so if need it you can link it from the librar
 <link href="_content/CrahunBlazorComponents/bootstrap/bootstrap.min.css" rel="stylesheet" />
 ```
 
+## Add global import in _Imports.razor
+```chsarp
+@using CrahunComponents
+```
+
 ## Skeleton table component
 ```html
 <SkeletonTable NumberOfColumns="4" IsLoading="isLoading" ShouldAnimate="true">
