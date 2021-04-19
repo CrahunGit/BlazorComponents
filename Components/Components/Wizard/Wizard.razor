@@ -1,6 +1,7 @@
 ﻿@implements IAsyncDisposable
 @inject IJSRuntime jsRuntime
 @inject ILogger<Wizard> logger 
+@namespace CrahunComponents
 
 <CascadingValue Value="this" Name="Parent" IsFixed="true">
     @ChildContent

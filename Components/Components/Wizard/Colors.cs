@@ -1,4 +1,4 @@
-﻿namespace Components.Components.Wizard
+﻿namespace CrahunComponents
 {
     public enum Theme
     {

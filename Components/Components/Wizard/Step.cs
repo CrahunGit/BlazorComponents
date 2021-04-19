@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace Components.Components.Wizard
+namespace CrahunComponents
 {
     public class Step : ComponentBase
     {
