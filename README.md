@@ -16,6 +16,11 @@ This library relies on bootstrap 4 so if need it you can link it from the librar
 <link href="_content/CrahunBlazorComponents/bootstrap/bootstrap.min.css" rel="stylesheet" />
 ```
 
+## Add global import in _Imports.razor
+```chsarp
+@using CrahunComponents
+```
+
 ## Skeleton table component
 ```html
 <SkeletonTable NumberOfColumns="4" IsLoading="isLoading" ShouldAnimate="true">
@@ -68,7 +73,8 @@ This library relies on bootstrap 4 so if need it you can link it from the librar
 \
 &nbsp;
 ## Wizard Component
-The wizard component Will show steps in certain order. Steps can contains any othe components, html, whatever you want.
+The wizard component Will show steps in certain order. Steps can contains any other components, html or whatever you want.
+This component is based on [creative Tim](https://www.creative-tim.com) jquery wizard.
 <img src="https://github.com/crahungit/BlazorComponents/blob/master/wizard.gif?raw=true" width="100%" />
 
 ### Usage
