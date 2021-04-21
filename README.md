@@ -179,3 +179,35 @@ SetActivePage(int currentIndex)
 NextPage()
 PreviousPage()
 ```
+\
+&nbsp;
+## LazyImageComponent
+This component will show any image with transitions when it's fully loaded. When it's loading it will show an skeleton ui or whaterever you like.
+
+### Usage
+```html
+<LazyImage ImageUrl="@($"{configuration["Urls:AuthServer"]}/images/Uploaded/{Category.PhotoUrl}")"
+                           Alternative="@Category.Name" AdditionalClasses="img-responsive">
+</LazyImage>
+```
+
+### Available parameters and customizations
+You can customize the image itself with the following params
+```csharp
+[Parameter]
+public string ImageUrl { get; set; }
+
+[Parameter]
+public string Alternative { get; set; }
+
+[Parameter]
+public string AdditionalStyles { get; set; }
+
+[Parameter]
+public string AdditionalClasses { get; set; }
+
+[Parameter]
+public RenderFragment LoadingPlaceHolder { get; set; }
+```
+
+The loading placeholder is just a div that will show when image is loading. By default is a skeleton-ui but can be replaced by spinner or whatever you need.
