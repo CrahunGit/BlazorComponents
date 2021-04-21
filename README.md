@@ -211,3 +211,4 @@ public RenderFragment LoadingPlaceHolder { get; set; }
 ```
 
 The loading placeholder is just a div that will show when image is loading. By default is a skeleton-ui but can be replaced by spinner or whatever you need.
+<img src="https://github.com/crahungit/BlazorComponents/blob/master/lazyImageSample.gif?raw=true" width="100%" />
