@@ -1,0 +1,8 @@
+﻿.square {
+    height: 100px;
+    width: 100px;
+    background-image: linear-gradient(90deg, #ddd 0px, #e8e8e8 40px, #ddd 80px);
+    background-size: 66%;
+    display: inline-block;
+    animation: shine-lines 1.6s infinite linear;
+}
