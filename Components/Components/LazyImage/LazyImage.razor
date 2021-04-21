@@ -1,0 +1,21 @@
+﻿@namespace CrahunComponents
+
+<img @onload="@(() => isImageLoaded = true)" src="@ImageUrl"
+     class="@(isImageLoaded ? AdditionalClasses: "")" alt="@Alternative"
+     style="transition: opacity .7s ease-in; @(isImageLoaded ? "opacity: 1": "opacity: 0"); @AdditionalStyles" />
+
+@code {
+    [Parameter]
+    public string ImageUrl { get; set; }
+
+    [Parameter]
+    public string Alternative { get; set; }
+
+    [Parameter]
+    public string AdditionalStyles { get; set; }
+
+    [Parameter]
+    public string AdditionalClasses { get; set; }
+
+    bool isImageLoaded;
+}
