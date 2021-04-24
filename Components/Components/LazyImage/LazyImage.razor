@@ -8,7 +8,7 @@
 }
 else
 {
-    <div class="square col-xs-12" style="@(isImageLoaded ? "display:none" : "")" />
+    <div class="square col-xs-12" style="@(isImageLoaded ? "display:none" : ""); float: right" />
 }
 
 <img @onload="@(() => isImageLoaded = true)" src="@ImageUrl"
