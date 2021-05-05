@@ -1,6 +1,6 @@
 ﻿@implements IAsyncDisposable
 @inject IJSRuntime jsRuntime
-@inject ILogger<Wizard> logger 
+@inject ILogger<Wizard> logger
 @namespace CrahunComponents
 
 <CascadingValue Value="this" Name="Parent" IsFixed="true">
@@ -22,7 +22,7 @@
 
                         <li class="nav-item" @key="step">
                             <a class="nav-link"
-                               style="cursor: pointer" @onclick="@(() => SetActivePage(i_local))">@(step?.Name ?? "Step")</a>
+                       style="cursor: pointer" @onclick="@(() => SetActivePage(i_local))">@(step?.Name ?? "Step")</a>
                         </li>
                     }
                 }
@@ -39,7 +39,8 @@
 
                         if (currentStep == i)
                         {
-                            @step.ChildContent;
+                            @step.ChildContent
+                            ;
                         }
                     }
                 }
@@ -48,10 +49,12 @@
     </div>
 
     <div class="wizard-footer">
-        <div class="pull-left">
-            <button class="btn-wizard btn-wizard-previous btn-wizard-fill btn-wizard-@PreviousButtonClass.ToString().ToLower() btn-wizard-wd" type="button" @onclick="@PreviousPage" disabled="@IsFirstStep()">@PreviousButtonText</button>
-        </div>
-
+        @if (!IsFirstStep())
+        {
+            <div class="pull-left">
+                <button class="btn-wizard btn-wizard-previous btn-wizard-fill btn-wizard-@PreviousButtonClass.ToString().ToLower() btn-wizard-wd" type="button" @onclick="@PreviousPage" disabled="@IsFirstStep()">@PreviousButtonText</button>
+            </div>
+        }
         @if (IsLastStep())
         {
             <div class="pull-right">
@@ -132,7 +135,7 @@
 
     public async Task SetActivePage(int currentIndex)
     {
-        if(Steps.Count < currentIndex)
+        if (Steps.Count < currentIndex)
         {
             string error = "Tried to navigate to non existing step index";
             logger.LogCritical(error);

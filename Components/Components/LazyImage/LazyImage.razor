@@ -2,18 +2,18 @@
 
 @if (LoadingPlaceHolder != null)
 {
-    <div style="@(isImageLoaded ? "display:none" : "")">
+    <div style="@(isImageLoaded ? "display:none; float: left" : "")">
         @LoadingPlaceHolder
     </div>
 }
 else
 {
-    <div class="square col-xs-12" style="@(isImageLoaded ? "display:none" : ""); float: right" />
+    <div class="square col-xs-12" style="@(isImageLoaded ? "display:none" : ""); float: left" />
 }
 
 <img @onload="@(() => isImageLoaded = true)" src="@ImageUrl"
      class="@(isImageLoaded ? AdditionalClasses: "")" alt="@Alternative"
-     style="transition: opacity .7s ease-in; @(isImageLoaded ? "opacity: 1": "opacity: 0; display: none"); @AdditionalStyles" />
+     style="transition: opacity .7s ease-in; @(isImageLoaded ? "opacity: 1": "opacity: 0; display: none; float: left"); @AdditionalStyles" />
 
 @code {
     [Parameter]
