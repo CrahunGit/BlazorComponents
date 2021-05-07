@@ -4,6 +4,10 @@
 
 Welcome to your new app.
 
+<EditForm Model="person">
+    <InputSwitch Label="prueba?" @bind-Value="@person.IsAdult"></InputSwitch>
+</EditForm>
+
 <button @onclick="ToggleButton">@actionButonText</button>
 
 <SkeletonTable NumberOfColumns="4" IsLoading="isLoading" ShouldAnimate="true">
@@ -75,10 +79,16 @@ Welcome to your new app.
 @code{
     private bool isLoading = true;
     private string actionButonText = "Stop loading";
+    private Person person = new Person();
 
     private void ToggleButton()
     {
         isLoading = !isLoading;
         actionButonText = isLoading ? "Stop loading" : "Start loading";
+    }
+
+    private class Person
+    {
+        public bool IsAdult { get; set; }
     }
 }
