@@ -13,7 +13,7 @@ else
 
 <img @onload="@(() => isImageLoaded = true)" src="@ImageUrl"
      class="@(isImageLoaded ? AdditionalClasses: "")" alt="@Alternative"
-     style="transition: opacity .7s ease-in; @(isImageLoaded ? "opacity: 1": "opacity: 0; display: none; float: left"); @AdditionalStyles" />
+     style="transition: opacity .7s ease-in; @(isImageLoaded ? "opacity: 1": "opacity: 0; float: left"); @AdditionalStyles" />
 
 @code {
     [Parameter]
