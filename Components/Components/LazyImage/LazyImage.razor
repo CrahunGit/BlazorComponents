@@ -2,13 +2,13 @@
 
 @if (LoadingPlaceHolder != null)
 {
-    <div style="@(isImageLoaded ? "display:none; float: left" : "")">
+    <div style="@(isImageLoaded ? "display:none; float: left" : "");">
         @LoadingPlaceHolder
     </div>
 }
 else
 {
-    <div class="square col-xs-12" style="@(isImageLoaded ? "display:none" : ""); float: left" />
+    <div class="square col-xs-12" style="@(isImageLoaded ? "display:none" : ""); float: left; width: @ImagePlaceHolderWidth" />
 }
 
 <img @onload="@(() => isImageLoaded = true)" src="@ImageUrl"
@@ -27,6 +27,9 @@ else
 
     [Parameter]
     public string AdditionalClasses { get; set; }
+
+    [Parameter]
+    public string ImagePlaceHolderWidth { get; set; }
 
     [Parameter]
     public RenderFragment LoadingPlaceHolder { get; set; }
