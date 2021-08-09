@@ -1,11 +1,11 @@
 ﻿@page "/Upload"
 @using System.IO
 
-<DragDropUploadFile />
+<DragDropUploadFile accept="image/*" />
 
 <div class="row">
     <div class="col-10">
-        <DragDropUploadFile OnChangeImage="OnChange" ShowImage="false" InformationText="Sample to upload file with custom format"/>
+        <DragDropUploadFile OnChangeImage="OnChange" ShowImage="false" InformationText="Sample to upload file with custom format" accept="image/*"/>
     </div>
     <div class="col-2">
         <img src="@src" style="max-width: 100%" />

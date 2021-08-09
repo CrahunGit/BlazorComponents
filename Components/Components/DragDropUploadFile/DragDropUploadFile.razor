@@ -6,7 +6,7 @@
 <div>
     <div @ref="dropZoneElement" class="drop-zone" id="@Id" style="width: @(ShowImage ? "80%" : "100%"); @(ShowImage ? "float: left" : "")">
         <p>@InformationText</p>
-        <InputFile OnChange="@OnChange" @ref="inputFile" />
+        <InputFile OnChange="@OnChange" @ref="inputFile" @attributes="AddtionalAttributes"/>
     </div>
 
     @* Display the uploaded image *@
@@ -30,6 +30,9 @@
 
     [Parameter]
     public EventCallback<InputFileChangeEventArgs> OnChangeImage { get; set; }
+
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object> AddtionalAttributes { get; set; }
     #endregion
 
     #region Instance variables
