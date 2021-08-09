@@ -268,7 +268,10 @@ public EventCallback<InputFileChangeEventArgs> OnChangeImage { get; set; }
 ## InputSwitch
 This component wraps boolean value inside a customizable switch intead of checkbox. It allows doble-way binding as any other blazor input component.
 
-<img src="https://github.com/crahungit/BlazorComponents/blob/master/switch.gif?raw=true" width="100%" />
+<br/>
+<p align="center">
+    <img src="https://github.com/crahungit/BlazorComponents/blob/master/switch.gif?raw=true" width="40%" />
+</p>
 
 ### Usage
 ```html
