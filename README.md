@@ -251,3 +251,41 @@ And the corresponding code
     }
 }
 ```
+
+### Available parameters and customizations
+You can customize the image itself with the following params
+```csharp
+[Parameter]
+public string InformationText { get; set; }
+
+[Parameter]
+public bool ShowImage { get; set; }
+
+[Parameter]
+public EventCallback<InputFileChangeEventArgs> OnChangeImage { get; set; }
+```
+
+## InputSwitch
+This component wraps boolean value inside a customizable switch intead of checkbox. It allows doble-way binding as any other blazor input component.
+
+<img src="https://github.com/crahungit/BlazorComponents/blob/master/switch.gif?raw=true" width="100%" />
+
+### Usage
+```html
+<EditForm Model="person">
+    <InputSwitch Label="prueba?" @bind-Value="@person.IsAdult"></InputSwitch>
+</EditForm>
+```
+
+### Available parameters and customizations
+You can customize the image itself with the following params
+```csharp
+[Parameter]
+public string Label { get; set; }
+
+[Parameter]
+public bool Value { get; set; }
+
+[Parameter]
+public EventCallback<bool> ValueChanged { get; set; }
+```
