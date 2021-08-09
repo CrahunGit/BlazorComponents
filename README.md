@@ -212,3 +212,42 @@ public RenderFragment LoadingPlaceHolder { get; set; }
 
 The loading placeholder is just a div that will show when image is loading. By default is a skeleton-ui but can be replaced by spinner or whatever you need.
 <img src="https://github.com/crahungit/BlazorComponents/blob/master/lazyImageSample.gif?raw=true" width="100%" />
+
+## DragDropUploadFile
+This component will wrap the blazor InputFile component with the ability to paste from image and drag and drop files. It supports image preview and customizations.
+
+<img src="https://github.com/crahungit/BlazorComponents/blob/master/uploadfiles.gif?raw=true" width="100%" />
+
+### Usage
+1. Basic usage
+```html
+<DragDropUploadFile />
+```
+
+2. Customized usage
+```html
+<div class="row">
+    <div class="col-10">
+        <DragDropUploadFile OnChangeImage="OnChange" ShowImage="false" InformationText="Sample to upload file with custom format"/>
+    </div>
+    <div class="col-2">
+        <img src="@src" style="max-width: 100%" />
+    </div>
+</div>
+```
+
+And the corresponding code
+```csharp
+@code {
+    string src;
+
+    // Called when a new file is uploaded
+    async Task OnChange(InputFileChangeEventArgs e)
+    {
+        using var stream = e.File.OpenReadStream();
+        using var ms = new MemoryStream();
+        await stream.CopyToAsync(ms);
+        src = "data:" + e.File.ContentType + ";base64," + Convert.ToBase64String(ms.ToArray());
+    }
+}
+```

@@ -1,0 +1,26 @@
+﻿@page "/Upload"
+@using System.IO
+
+<DragDropUploadFile />
+
+<div class="row">
+    <div class="col-10">
+        <DragDropUploadFile OnChangeImage="OnChange" ShowImage="false" InformationText="Sample to upload file with custom format"/>
+    </div>
+    <div class="col-2">
+        <img src="@src" style="max-width: 100%" />
+    </div>
+</div>
+
+@code {
+    string src;
+
+    // Called when a new file is uploaded
+    async Task OnChange(InputFileChangeEventArgs e)
+    {
+        using var stream = e.File.OpenReadStream();
+        using var ms = new MemoryStream();
+        await stream.CopyToAsync(ms);
+        src = "data:" + e.File.ContentType + ";base64," + Convert.ToBase64String(ms.ToArray());
+    }
+}

@@ -1,0 +1,92 @@
+﻿@namespace CrahunComponents
+@using System.IO
+@inject IJSRuntime JSRuntime
+@implements IAsyncDisposable
+
+<div>
+    <div @ref="dropZoneElement" class="drop-zone" id="@Id" style="width: @(ShowImage ? "80%" : "100%"); @(ShowImage ? "float: left" : "")">
+        <p>@InformationText</p>
+        <InputFile OnChange="@OnChange" @ref="inputFile" />
+    </div>
+
+    @* Display the uploaded image *@
+    @if (ShowImage)
+    {
+        <div style="width: 20%; @(ShowImage ? "float: right" : ""); padding: 0 0 0 1em">
+            <img src="@src" style="max-width: 100%" />
+        </div>
+    }
+
+    <div style="clear: both; margin-bottom: 2em"></div>
+</div>
+
+@code {
+    #region Parameters
+    [Parameter]
+    public string InformationText { get; set; } = "Drop a file or paste an image from the clipboard or select a file using the input";
+
+    [Parameter]
+    public bool ShowImage { get; set; } = true;
+
+    [Parameter]
+    public EventCallback<InputFileChangeEventArgs> OnChangeImage { get; set; }
+    #endregion
+
+    #region Instance variables
+    ElementReference dropZoneElement;
+    InputFile inputFile;
+
+    IJSObjectReference _module;
+    IJSObjectReference _dropZoneInstance;
+
+    string src;
+    private static int instanceNumber;
+    private string Id = $"dragdrop-{instanceNumber}";
+    #endregion
+
+    public DragDropUploadFile()
+    {
+        DragDropUploadFile.instanceNumber++;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            // Load the JS file
+            _module = await JSRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/CrahunBlazorComponents/DragDropUploadFile/dropZone.js");
+
+            // Initialize the drop zone
+            _dropZoneInstance = await _module.InvokeAsync<IJSObjectReference>("initializeFileDropZone", dropZoneElement, Id);
+        }
+    }
+
+    // Called when a new file is uploaded
+    async Task OnChange(InputFileChangeEventArgs e)
+    {
+        if (ShowImage)
+        {
+            using var stream = e.File.OpenReadStream();
+            using var ms = new MemoryStream();
+            await stream.CopyToAsync(ms);
+            src = "data:" + e.File.ContentType + ";base64," + Convert.ToBase64String(ms.ToArray());
+        }
+
+        await OnChangeImage.InvokeAsync(e);
+    }
+
+    // Unregister the drop zone events
+    public async ValueTask DisposeAsync()
+    {
+        if (_dropZoneInstance != null)
+        {
+            await _dropZoneInstance.InvokeVoidAsync("dispose");
+            await _dropZoneInstance.DisposeAsync();
+        }
+
+        if (_module != null)
+        {
+            await _module.DisposeAsync();
+        }
+    }
+}
