@@ -254,7 +254,7 @@ And the corresponding code
 ```
 
 ### Available parameters and customizations
-You can customize the image itself with the following params
+You can customize this component with the following params
 ```csharp
 [Parameter]
 public string InformationText { get; set; }
@@ -277,12 +277,12 @@ This component wraps boolean value inside a customizable switch intead of checkb
 ### Usage
 ```html
 <EditForm Model="person">
-    <InputSwitch Label="prueba?" @bind-Value="@person.IsAdult"></InputSwitch>
+    <InputSwitch Label="Are you adult?" @bind-Value="@person.IsAdult"></InputSwitch>
 </EditForm>
 ```
 
 ### Available parameters and customizations
-You can customize the image itself with the following params
+You can customize this component itself with the following params
 ```csharp
 [Parameter]
 public string Label { get; set; }
