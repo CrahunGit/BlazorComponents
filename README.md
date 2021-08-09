@@ -214,7 +214,8 @@ The loading placeholder is just a div that will show when image is loading. By d
 <img src="https://github.com/crahungit/BlazorComponents/blob/master/lazyImageSample.gif?raw=true" width="100%" />
 
 ## DragDropUploadFile
-This component will wrap the blazor InputFile component with the ability to paste from image and drag and drop files. It supports image preview and customizations.
+This component will wrap the blazor InputFile component with the ability to paste from image and drag and drop files. It supports image preview and customizations.<br /><br />
+This component is based and adapted from [Meziantou's blog](https://www.meziantou.net/upload-files-with-drag-drop-or-paste-from-clipboard-in-blazor.htm). All the effort is from him.
 
 <img src="https://github.com/crahungit/BlazorComponents/blob/master/uploadfiles.gif?raw=true" width="100%" />
 
