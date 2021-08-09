@@ -277,7 +277,7 @@ This component wraps boolean value inside a customizable switch intead of checkb
 ### Usage
 ```html
 <EditForm Model="person">
-    <InputSwitch Label="prueba?" @bind-Value="@person.IsAdult"></InputSwitch>
+    <InputSwitch Label="Are you adult?" @bind-Value="@person.IsAdult"></InputSwitch>
 </EditForm>
 ```
 
