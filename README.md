@@ -229,7 +229,7 @@ This component is based and adapted from [Meziantou's blog](https://www.mezianto
 ```html
 <div class="row">
     <div class="col-10">
-        <DragDropUploadFile OnChangeImage="OnChange" ShowImage="false" InformationText="Sample to upload file with custom format"/>
+        <DragDropUploadFile OnFileSelectionChanged="OnChange" ShowImage="false" InformationText="Sample to upload file with custom format"/>
     </div>
     <div class="col-2">
         <img src="@src" style="max-width: 100%" />
