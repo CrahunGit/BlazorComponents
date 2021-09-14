@@ -5,7 +5,7 @@ Useful blazor components
 You can install package from nuget
 
 ```
-<PackageReference Include="CrahunBlazorComponents" Version="1.1.2" />
+<PackageReference Include="CrahunBlazorComponents" Version="2.3.5" />
 ```
 
 ## Add bootstrap 4 Css
@@ -205,6 +205,12 @@ public string AdditionalStyles { get; set; }
 
 [Parameter]
 public string AdditionalClasses { get; set; }
+
+[Parameter]
+public string ImagePlaceHolderWidth { get; set; } = "100%";
+    
+[Parameter]
+public int ImagePlaceHolderHeight { get; set; } = 200";
 
 [Parameter]
 public RenderFragment LoadingPlaceHolder { get; set; }
