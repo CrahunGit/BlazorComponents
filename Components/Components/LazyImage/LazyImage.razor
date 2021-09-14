@@ -8,7 +8,7 @@
 }
 else
 {
-    <div class="square col-xs-12" style="@(isImageLoaded ? "display:none" : ""); float: left; width: @ImagePlaceHolderWidth" />
+    <div class="square col-xs-12" style="@(isImageLoaded ? "display:none" : ""); float: right; width: @ImagePlaceHolderWidth; height: @ImagePlaceHolderHeight" />
 }
 
 <img @onload="@(() => isImageLoaded = true)" src="@ImageUrl"
@@ -29,7 +29,10 @@ else
     public string AdditionalClasses { get; set; }
 
     [Parameter]
-    public string ImagePlaceHolderWidth { get; set; }
+    public string ImagePlaceHolderWidth { get; set; } = "100%";
+    
+    [Parameter]
+    public string ImagePlaceHolderHeight { get; set; } = "100%";
 
     [Parameter]
     public RenderFragment LoadingPlaceHolder { get; set; }
