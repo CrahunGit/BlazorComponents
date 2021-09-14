@@ -207,6 +207,12 @@ public string AdditionalStyles { get; set; }
 public string AdditionalClasses { get; set; }
 
 [Parameter]
+public string ImagePlaceHolderWidth { get; set; } = "100%";
+    
+[Parameter]
+public string ImagePlaceHolderHeight { get; set; } = "100%";
+
+[Parameter]
 public RenderFragment LoadingPlaceHolder { get; set; }
 ```
 
