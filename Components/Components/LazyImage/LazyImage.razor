@@ -11,7 +11,7 @@ else
     <div class="square col-xs-12" style="@(isImageLoaded ? "display:none" : ""); width: @ImagePlaceHolderWidth; height: @(ImagePlaceHolderHeight)px" />
 }
 
-    <img src="@ImageUrl" 
+    <img src="@ImageUrl" @onload="@(() => isImageLoaded = true)" 
          class="@(isImageLoaded ? AdditionalClasses: "")" alt="@Alternative"
          style="transition: opacity .7s ease-in; @(isImageLoaded ? "opacity: 1": "opacity: 0;"); @(isImageLoaded ? "": "width: 0%"); @AdditionalStyles" />
 
