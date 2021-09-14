@@ -210,7 +210,7 @@ public string AdditionalClasses { get; set; }
 public string ImagePlaceHolderWidth { get; set; } = "100%";
     
 [Parameter]
-public string ImagePlaceHolderHeight { get; set; } = "100%";
+public int ImagePlaceHolderHeight { get; set; } = 200";
 
 [Parameter]
 public RenderFragment LoadingPlaceHolder { get; set; }
