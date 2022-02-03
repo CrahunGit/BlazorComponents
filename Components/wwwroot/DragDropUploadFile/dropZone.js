@@ -1,6 +1,8 @@
 ﻿export function initializeFileDropZone(dropZoneElement, inputFileIndetifier) {
     if (document.querySelectorAll(`#${inputFileIndetifier} > div > input`).length == 0) {
-        return;
+        return {
+            dispose: () => true
+        };
     }
 
     const inputFile = document.querySelectorAll(`#${inputFileIndetifier} > div > input`)[0];
