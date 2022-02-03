@@ -1,6 +1,6 @@
 ﻿export function initializeFileDropZone(dropZoneElement, inputFileIndetifier) {
     if (document.querySelectorAll(`#${inputFileIndetifier} > div > input`).length == 0) {
-        throw "There is no input type file inside this identifier";
+        throw new "There is no input type file inside this identifier";
     }
 
     const inputFile = document.querySelectorAll(`#${inputFileIndetifier} > div > input`)[0];
