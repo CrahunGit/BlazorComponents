@@ -6,6 +6,40 @@
     border-radius: 5px;
 }
 
-.drop-zone.hover {
-    border-style: solid;
+    .drop-zone.hover {
+        border-style: solid;
+    }
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
 }
+
+    .inputfile:focus + label {
+        outline: 1px dotted #000;
+        outline: -webkit-focus-ring-color auto 5px;
+    }
+
+    .inputfile + label * {
+        pointer-events: none;
+    }
+
+    .inputfile + label {
+        cursor: pointer;
+    }
+
+    .inputfile + label {
+        color: white;
+        background-color: blue;
+        display: inline-block;
+        padding: .3em;
+    }
+
+        .inputfile:focus + label,
+        .inputfile + label:hover {
+            background-color: lightblue;
+        }

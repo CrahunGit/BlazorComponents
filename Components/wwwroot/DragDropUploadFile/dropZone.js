@@ -1,9 +1,9 @@
 ﻿export function initializeFileDropZone(dropZoneElement, inputFileIndetifier) {
-    if (document.querySelectorAll(`#${inputFileIndetifier} > input`).length == 0) {
+    if (document.querySelectorAll(`#${inputFileIndetifier} > div > input`).length == 0) {
         throw "There is no input type file inside this identifier";
     }
 
-    const inputFile = document.querySelectorAll(`#${inputFileIndetifier} > input`)[0];
+    const inputFile = document.querySelectorAll(`#${inputFileIndetifier} > div > input`)[0];
 
     // Add a class when the user drags a file over the drop zone
     function onDragHover(e) {

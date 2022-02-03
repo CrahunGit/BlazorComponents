@@ -6,7 +6,11 @@
 <div>
     <div @ref="dropZoneElement" class="drop-zone" id="@Id" style="width: @(ShowImage ? "80%" : "100%"); @(ShowImage ? "float: left" : "")">
         <p>@InformationText</p>
-        <InputFile OnChange="@OnChange" @ref="inputFile" @attributes="AddtionalAttributes"/>
+
+        <div>
+            <InputFile name="file" id="file" OnChange="@OnChange" @ref="inputFile" @attributes="AddtionalAttributes" class="inputfile" style="width: 0.1px; height: 0.1px; opacity: 0; overflow: hidden; position: absolute; z-index: -1;" />
+            <label for="file"><span>Choose a file</span></label>
+        </div>
     </div>
 
     @* Display the uploaded image *@
@@ -24,6 +28,9 @@
     #region Parameters
     [Parameter]
     public string InformationText { get; set; } = "Drop a file or paste an image from the clipboard or select a file using the input";
+
+    [Parameter]
+    public string UploadButtonText { get; set; } = "Upload file";
 
     [Parameter]
     public bool ShowImage { get; set; } = true;
