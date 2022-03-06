@@ -13,10 +13,8 @@
     display: inline-block;
 }
 
-@media (max-width: 991.98px) {
-    .card-body {
-        overflow-x: scroll;
-    }
+.card-body {
+    overflow-x: hidden;
 }
 
 .line {
