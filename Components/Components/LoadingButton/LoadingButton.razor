@@ -1,7 +1,6 @@
 ﻿@namespace CrahunComponents
 
-<div class="d-flex">
-    <button class="btn btn-primary mt-3 ms-auto me-auto" type="submit" disabled="@IsLoading" @onclick=@(async () => await OnClick.InvokeAsync())>
+    <button disabled="@IsLoading" @onclick="@(async () => await OnClick.InvokeAsync())" @attributes="AdditionalProperties" >
         @if (IsLoading)
         {
             <div class="d-flex">
@@ -16,7 +15,6 @@
             <text>@Text</text>
         }
     </button>
-</div>
 
 @code {
     [Parameter]
@@ -30,4 +28,7 @@
 
     [Parameter]
     public EventCallback<bool> OnClick { get; set; }
+
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object> AdditionalProperties { get; set; }
 }

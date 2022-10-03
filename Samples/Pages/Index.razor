@@ -8,7 +8,9 @@ Welcome to your new app.
     <InputSwitch Label="prueba?" @bind-Value="@person.IsAdult"></InputSwitch>
 </EditForm>
 
-<LoadingButton OnClick="ToggleButton" Text="Load data" @bind-IsLoading="isLoading"></LoadingButton>
+<div class="d-flex">
+    <LoadingButton OnClick="ToggleButton" Text="Load data" @bind-IsLoading="isLoading" class="btn btn-primary mt-3 ms-auto me-auto" type="submit" />
+</div>
 
 <SkeletonTable NumberOfColumns="4" IsLoading="isLoading" ShouldAnimate="true">
     <ChildContent>
