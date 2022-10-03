@@ -305,7 +305,7 @@ This component shows button text or bootstrap spinner while controlling its IsLo
 
 <br/>
 <p align="center">
-    <img src="https://github.com/crahungit/BlazorComponents/blob/master/switch.gif?raw=true" width="40%" />
+    <img src="https://github.com/crahungit/BlazorComponents/blob/master/LoadingButton.gif?raw=true" width="40%" />
 </p>
 
 ### Usage
