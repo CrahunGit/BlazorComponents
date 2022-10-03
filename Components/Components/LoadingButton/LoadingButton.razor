@@ -1,0 +1,33 @@
+﻿@namespace CrahunComponents
+
+<div class="d-flex">
+    <button class="btn btn-primary mt-3 ms-auto me-auto" type="submit" disabled="@IsLoading" @onclick=@(async () => await OnClick.InvokeAsync())>
+        @if (IsLoading)
+        {
+            <div class="d-flex">
+                <span class="spinner-border ms-auto me-auto" role="status" style="color: lightgray">
+                    <span class="sr-only">Loading...</span>
+                </span>
+            </div>
+        }
+
+        else
+        {
+            <text>@Text</text>
+        }
+    </button>
+</div>
+
+@code {
+    [Parameter]
+    public bool IsLoading { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> IsLoadingChanged { get; set; }
+
+    [Parameter]
+    public string Text { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> OnClick { get; set; }
+}

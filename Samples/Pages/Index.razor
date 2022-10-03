@@ -8,7 +8,7 @@ Welcome to your new app.
     <InputSwitch Label="prueba?" @bind-Value="@person.IsAdult"></InputSwitch>
 </EditForm>
 
-<button @onclick="ToggleButton">@actionButonText</button>
+<LoadingButton OnClick="ToggleButton" Text="Load data" @bind-IsLoading="isLoading"></LoadingButton>
 
 <SkeletonTable NumberOfColumns="4" IsLoading="isLoading" ShouldAnimate="true">
     <ChildContent>
@@ -77,14 +77,21 @@ Welcome to your new app.
 </SkeletonCards>
 
 @code{
-    private bool isLoading = true;
+    private bool isLoading = false;
     private string actionButonText = "Stop loading";
     private Person person = new Person();
 
-    private void ToggleButton()
+    private async void ToggleButton()
     {
-        isLoading = !isLoading;
+        isLoading = true;
+        StateHasChanged();
+        await Task.Delay(1000);
+
         actionButonText = isLoading ? "Stop loading" : "Start loading";
+
+        isLoading = false;
+        StateHasChanged();
+        await Task.Delay(1000);
     }
 
     private class Person
