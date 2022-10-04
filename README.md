@@ -5,7 +5,7 @@ Useful blazor components
 You can install package from nuget
 
 ```
-<PackageReference Include="CrahunBlazorComponents" Version="2.3.5" />
+<PackageReference Include="CrahunBlazorComponents" Version="2.5.1" />
 ```
 
 ## Add bootstrap 4 Css
@@ -299,3 +299,36 @@ public bool Value { get; set; }
 [Parameter]
 public EventCallback<bool> ValueChanged { get; set; }
 ```
+
+## LoadingButton
+This component shows button text or bootstrap spinner while controlling its IsLoading property.
+
+<br/>
+<p align="center">
+    <img src="https://github.com/crahungit/BlazorComponents/blob/master/LoadingButton.gif?raw=true" width="40%" />
+</p>
+
+### Usage
+```html
+<div class="d-flex">
+    <LoadingButton OnClick="ToggleButton" Text="Load data" @bind-IsLoading="isLoading" 
+                   class="btn btn-primary mt-3 ms-auto me-auto" type="submit" />
+</div>
+```
+
+### Available parameters and customizations
+You can customize this component itself with the following params
+```csharp
+[Parameter]
+public string Text { get; set; }
+
+[Parameter]
+public bool OnClick { get; set; }
+
+[Parameter]
+public bool IsLoading { get; set; }
+
+[Parameter]
+public EventCallback<bool> IsLoadingChanged { get; set; }}
+```
+
