@@ -9,7 +9,18 @@ Welcome to your new app.
 </EditForm>
 
 <div class="d-flex">
-    <LoadingButton OnClick="ToggleButton" Text="Load data" @bind-IsLoading="isLoading" class="btn btn-primary mt-3 ms-auto me-auto" type="submit" />
+    <LoadingButton OnClick="ToggleButton" @bind-IsLoading="isLoading" class="btn btn-primary mt-3 ms-auto me-auto" type="submit">
+        <LoadingTemplate>
+            <div class="d-flex">
+                <span class="spinner-border ms-auto me-auto" role="status" style="color: red">
+                    <span class="sr-only">Loading...</span>
+                </span>
+            </div>
+        </LoadingTemplate>
+        <ButtonTextTemplate>
+            <span>Hola</span>
+        </ButtonTextTemplate>
+    </LoadingButton>
 </div>
 
 <SkeletonTable NumberOfColumns="4" IsLoading="isLoading" ShouldAnimate="true">
@@ -30,20 +41,20 @@ Welcome to your new app.
         </tr>
     </ChildContent>
     <Head>
-        <tr>
-            <th>
-                Column1
-            </th>
-            <th>
-                Column2
-            </th>
-            <th>
-                Column3
-            </th>
-            <th>
-                Column4
-            </th>
-        </tr>
+    <tr>
+        <th>
+            Column1
+        </th>
+        <th>
+            Column2
+        </th>
+        <th>
+            Column3
+        </th>
+        <th>
+            Column4
+        </th>
+    </tr>
     </Head>
 </SkeletonTable>
 
@@ -78,7 +89,7 @@ Welcome to your new app.
     </div>
 </SkeletonCards>
 
-@code{
+@code {
     private bool isLoading = false;
     private string actionButonText = "Stop loading";
     private Person person = new Person();

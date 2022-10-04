@@ -1,7 +1,13 @@
 ﻿@namespace CrahunComponents
 
-    <button disabled="@IsLoading" @onclick="@(async () => await OnClick.InvokeAsync())" @attributes="AdditionalProperties" >
-        @if (IsLoading)
+<button disabled="@IsLoading" @onclick="@(async () => await OnClick.InvokeAsync())" @attributes="AdditionalProperties">
+    @if (IsLoading)
+    {
+        if (LoadingTemplate is not null)
+        {
+            @LoadingTemplate
+        }
+        else
         {
             <div class="d-flex">
                 <span class="spinner-border ms-auto me-auto" role="status" style="color: lightgray">
@@ -9,12 +15,13 @@
                 </span>
             </div>
         }
+    }
 
-        else
-        {
-            <text>@Text</text>
-        }
-    </button>
+    else
+    {
+        @ButtonTextTemplate;
+    }
+</button>
 
 @code {
     [Parameter]
@@ -24,7 +31,10 @@
     public EventCallback<bool> IsLoadingChanged { get; set; }
 
     [Parameter]
-    public string Text { get; set; }
+    public RenderFragment ButtonTextTemplate { get; set; }
+
+    [Parameter]
+    public RenderFragment LoadingTemplate { get; set; }
 
     [Parameter]
     public EventCallback<bool> OnClick { get; set; }

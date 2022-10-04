@@ -9,8 +9,8 @@
 		<RepositoryUrl>https://github.com/CrahunGit/BlazorComponents</RepositoryUrl>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<Version>2.5.1</Version>
-		<AssemblyVersion>2.5.1.0</AssemblyVersion>
-		<FileVersion>2.5.1.0</FileVersion>
+		<AssemblyVersion>2.5.2.0</AssemblyVersion>
+		<FileVersion>2.5.2.0</FileVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
