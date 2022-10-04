@@ -311,8 +311,18 @@ This component shows button text or bootstrap spinner while controlling its IsLo
 ### Usage
 ```html
 <div class="d-flex">
-    <LoadingButton OnClick="ToggleButton" Text="Load data" @bind-IsLoading="isLoading" 
-                   class="btn btn-primary mt-3 ms-auto me-auto" type="submit" />
+    <LoadingButton OnClick="ToggleButton" @bind-IsLoading="isLoading" class="btn btn-primary mt-3 ms-auto me-auto" type="submit">
+        <LoadingTemplate>
+            <div class="d-flex">
+                <span class="spinner-border ms-auto me-auto" role="status" style="color: red">
+                    <span class="sr-only">Loading...</span>
+                </span>
+            </div>
+        </LoadingTemplate>
+        <ButtonTextTemplate>
+            <span>Hola</span>
+        </ButtonTextTemplate>
+    </LoadingButton>
 </div>
 ```
 
@@ -320,15 +330,21 @@ This component shows button text or bootstrap spinner while controlling its IsLo
 You can customize this component itself with the following params
 ```csharp
 [Parameter]
-public string Text { get; set; }
-
-[Parameter]
-public bool OnClick { get; set; }
-
-[Parameter]
 public bool IsLoading { get; set; }
 
 [Parameter]
-public EventCallback<bool> IsLoadingChanged { get; set; }}
+public EventCallback<bool> IsLoadingChanged { get; set; }
+
+[Parameter]
+public RenderFragment ButtonTextTemplate { get; set; }
+
+[Parameter]
+public RenderFragment LoadingTemplate { get; set; }
+
+[Parameter]
+public EventCallback<bool> OnClick { get; set; }
+
+[Parameter(CaptureUnmatchedValues = true)]
+public Dictionary<string, object> AdditionalProperties { get; set; }
 ```
 
