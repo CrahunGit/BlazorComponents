@@ -1,18 +1,20 @@
 ﻿@page "/Upload"
 @using System.IO
 
-<DragDropUploadFile accept="image/*" />
 
 <div class="row">
     <div class="col-10">
-        <DragDropUploadFile OnFileSelectionChanged="OnChange" ShowImage="false" InformationText="Sample to upload file with custom format" accept="image/*"/>
+        <DragDropUploadFile @ref="dragDropUploadFile" OnFileSelectionChanged="OnChange" ShowImage="true" InformationText="Sample to upload file with custom format" accept="image/*" />
     </div>
-    <div class="col-2">
-        <img src="@src" style="max-width: 100%" />
+</div>
+<div class="row">
+    <div class="col-10">
+        <button class="btn btn-primary" @onclick="ClearFile">Clear file</button>
     </div>
 </div>
 
 @code {
+    DragDropUploadFile? dragDropUploadFile;
     string src;
 
     // Called when a new file is uploaded
@@ -23,4 +25,6 @@
         await stream.CopyToAsync(ms);
         src = "data:" + e.File.ContentType + ";base64," + Convert.ToBase64String(ms.ToArray());
     }
+
+    private void ClearFile() => dragDropUploadFile?.ClearSelectedFiles();
 }

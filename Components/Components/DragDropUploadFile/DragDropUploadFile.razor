@@ -73,6 +73,14 @@
         }
     }
 
+    public void ClearSelectedFiles()
+    {
+        file = null;
+        src = null;
+        ShowImage = false;
+        StateHasChanged();
+    }
+
     // Called when a new file is uploaded
     async Task OnChange(InputFileChangeEventArgs e)
     {
