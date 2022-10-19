@@ -5,7 +5,7 @@ Useful blazor components
 You can install package from nuget
 
 ```
-<PackageReference Include="CrahunBlazorComponents" Version="2.5.4" />
+<PackageReference Include="CrahunBlazorComponents" Version="2.5.5" />
 ```
 
 ## Add bootstrap 4 Css
