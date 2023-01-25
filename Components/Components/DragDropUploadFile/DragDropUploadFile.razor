@@ -84,7 +84,7 @@
     // Called when a new file is uploaded
     async Task OnChange(InputFileChangeEventArgs e)
     {
-        if (ShowImage)
+        if (ShowImage && e.FileCount == 1)
         {
             using var stream = e.File.OpenReadStream();
             using var ms = new MemoryStream();
@@ -92,7 +92,6 @@
             src = "data:" + e.File.ContentType + ";base64," + Convert.ToBase64String(ms.ToArray());
         }
 
-        file = e.File;
         await OnFileSelectionChanged.InvokeAsync(e);
     }
 
