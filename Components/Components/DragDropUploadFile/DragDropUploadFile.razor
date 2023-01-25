@@ -10,7 +10,14 @@
         <div>
             <InputFile name="file" id="file" OnChange="@OnChange" @ref="inputFile" @attributes="AddtionalAttributes" class="inputfile" style="width: 0.1px; height: 0.1px; opacity: 0; overflow: hidden; position: absolute; z-index: -1;" />
             <label for="file"><span>@UploadButtonText</span></label>
-            <span style="margin-left: .2em">@file?.Name</span>
+
+            @if (files is not null)
+            {
+                @foreach (var file in files)
+                {
+                    <p style="margin-left: .2em">@file?.Name</p>
+                }
+            }
         </div>
     </div>
 
@@ -45,8 +52,8 @@
 
     #region Instance variables
     ElementReference dropZoneElement;
+    IReadOnlyList<IBrowserFile> files;
     InputFile inputFile;
-    IBrowserFile file;
 
     IJSObjectReference _module;
     IJSObjectReference _dropZoneInstance;
@@ -75,7 +82,7 @@
 
     public void ClearSelectedFiles()
     {
-        file = null;
+        files = null;
         src = null;
         ShowImage = false;
         StateHasChanged();
@@ -92,6 +99,7 @@
             src = "data:" + e.File.ContentType + ";base64," + Convert.ToBase64String(ms.ToArray());
         }
 
+        files = e.GetMultipleFiles();
         await OnFileSelectionChanged.InvokeAsync(e);
     }
 
