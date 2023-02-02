@@ -13,10 +13,12 @@
 
             @if (files is not null)
             {
+                <div class="mt-2">
                 @foreach (var file in files)
                 {
                     <p style="margin-left: .2em">@file?.Name</p>
                 }
+                </div>
             }
         </div>
     </div>
