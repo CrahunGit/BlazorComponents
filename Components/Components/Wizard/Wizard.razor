@@ -7,7 +7,7 @@
     @ChildContent
 </CascadingValue>
 
-<div class="card wizard-card-no-shadow" data-color="@Theme.ToString().ToLower()" id="@Id" style="border: none !important;">
+<div class="card wizard-card-no-shadow" data-color="@Colors" id="@Id" style="border: none !important;">
     <div class="wizard-header">
         <h3 class="wizard-title h3-wizard">@Title</h3>
     </div>
@@ -27,7 +27,7 @@
                     }
                 }
             </ul>
-            <div class="moving-tab"></div>
+            <div class="moving-tab" style="background-color: @Colors"></div>
 
         </div>
         <div id="container-fluid">
@@ -52,19 +52,19 @@
         @if (!IsFirstStep())
         {
             <div class="pull-left">
-                <button class="btn-wizard btn-wizard-previous btn-wizard-fill btn-wizard-@PreviousButtonClass.ToString().ToLower() btn-wizard-wd" type="button" @onclick="@PreviousPage" disabled="@IsFirstStep()">@PreviousButtonText</button>
+                <button class="btn-wizard btn-wizard-previous btn-wizard-fill btn-wizard-wd" style="background-color: @PreviousButtonColor" type="button" @onclick="@PreviousPage" disabled="@IsFirstStep()">@PreviousButtonText</button>
             </div>
         }
         @if (IsLastStep())
         {
             <div class="pull-right">
-                <button class="btn-wizard btn-wizard-next btn-wizard-fill btn-wizard-@FinishButtonClass.ToString().ToLower() btn-wizard-wd" type="button" @onclick="@Finished">@FinishedButtonText</button>
+                <button class="btn-wizard btn-wizard-next btn-wizard-fill btn-wizard-wd" style="background-color: @FinishButtonColor" type="button" @onclick="@Finished">@FinishedButtonText</button>
             </div>
         }
         else
         {
             <div class="pull-right">
-                <button class="btn-wizard btn-wizard-next btn-wizard-fill btn-wizard-@NextButtonClass.ToString().ToLower() btn-wizard-wd" type="button" @onclick="@NextPage">@NextButtonText</button>
+                <button class="btn-wizard btn-wizard-next btn-wizard-fill btn-wizard-wd" style="background-color: @NextButtonColor" type="button" @onclick="@NextPage">@NextButtonText</button>
             </div>
         }
         <div class="clearfix"></div>
@@ -77,7 +77,7 @@
     public string Title { get; set; }
 
     [Parameter]
-    public Theme Theme { get; set; } = Theme.Red;
+    public string Colors { get; set; } = "red";
 
     [Parameter]
     public RenderFragment ChildContent { get; set; }
@@ -95,13 +95,13 @@
     public EventCallback<int> OnSelectedStep { get; set; }
 
     [Parameter]
-    public Buttons PreviousButtonClass { get; set; } = Buttons.Default;
+    public string PreviousButtonColor { get; set; }
 
     [Parameter]
-    public Buttons NextButtonClass { get; set; } = Buttons.Danger;
+    public string NextButtonColor { get; set; }
 
     [Parameter]
-    public Buttons FinishButtonClass { get; set; } = Buttons.Danger;
+    public string FinishButtonColor { get; set; } = "red";
 
     [Parameter]
     public string NextButtonText { get; set; } = "Next";
