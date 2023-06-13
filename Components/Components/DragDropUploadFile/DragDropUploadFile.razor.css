@@ -30,9 +30,6 @@
 
     .inputfile + label {
         cursor: pointer;
-    }
-
-    .inputfile + label {
         color: white;
         background-color: blue;
         display: inline-block;
