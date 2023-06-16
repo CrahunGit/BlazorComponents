@@ -52,19 +52,19 @@
         @if (!IsFirstStep())
         {
             <div class="pull-left">
-                <button class="btn-wizard btn-wizard-previous btn-wizard-fill btn-wizard-wd" style="background-color: @PreviousButtonColor" type="button" @onclick="@PreviousPage" disabled="@IsFirstStep()">@PreviousButtonText</button>
+                <button class="btn-wizard btn-wizard-previous btn-wizard-fill btn-wizard-wd" style="background-color: @PreviousButtonColor" type="button" @onclick="@PreviousPage" disabled="@(PreviousButtonDisabled || IsFirstStep())">@PreviousButtonText</button>
             </div>
         }
         @if (IsLastStep())
         {
             <div class="pull-right">
-                <button class="btn-wizard btn-wizard-next btn-wizard-fill btn-wizard-wd" style="background-color: @FinishButtonColor" type="button" @onclick="@Finished">@FinishedButtonText</button>
+                <button class="btn-wizard btn-wizard-next btn-wizard-fill btn-wizard-wd" style="background-color: @FinishButtonColor" type="button" @onclick="@Finished" disabled="@FinishButtonDisabled">@FinishedButtonText</button>
             </div>
         }
         else
         {
             <div class="pull-right">
-                <button class="btn-wizard btn-wizard-next btn-wizard-fill btn-wizard-wd" style="background-color: @NextButtonColor" type="button" @onclick="@NextPage">@NextButtonText</button>
+                <button class="btn-wizard btn-wizard-next btn-wizard-fill btn-wizard-wd" style="background-color: @NextButtonColor" type="button" @onclick="@NextPage" disabled="@NextButtonDisabled">@NextButtonText</button>
             </div>
         }
         <div class="clearfix"></div>
@@ -111,6 +111,15 @@
 
     [Parameter]
     public string FinishedButtonText { get; set; } = "Finished";
+
+    [Parameter]
+    public bool PreviousButtonDisabled { get; set; }
+
+    [Parameter]
+    public bool NextButtonDisabled { get; set; }
+
+    [Parameter]
+    public bool FinishButtonDisabled { get; set; }
 
     #endregion
     #region Instance variables
