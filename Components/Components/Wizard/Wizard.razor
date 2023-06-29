@@ -28,7 +28,7 @@
                     }
                 }
             </ul>
-            <div class="moving-tab" style="background-color: @Colors"></div>
+            <div class="moving-tab" style="background-color: @Colors; cursor: @(DisableNavigationLinks ? "default" : "pointer")"></div>
 
         </div>
         <div id="container-fluid">
@@ -40,8 +40,7 @@
 
                         if (currentStep == i)
                         {
-                            @step.ChildContent
-                            ;
+                            @step.ChildContent;
                         }
                     }
                 }
@@ -53,19 +52,19 @@
         @if (!IsFirstStep())
         {
             <div class="pull-left">
-                <button @key="Random.Shared.Next().ToString()" class="btn-wizard btn-wizard-previous btn-wizard-fill btn-wizard-wd" style="background-color: @PreviousButtonColor" type="button" @onclick="@PreviousPage" disabled="@(PreviousButtonDisabled || IsFirstStep())">@PreviousButtonText</button>
+                <button class="btn-wizard btn-wizard-previous btn-wizard-fill btn-wizard-wd" style="background-color: @PreviousButtonColor" type="button" disabled="@(PreviousButtonDisabled || IsFirstStep())" @onclick="@PreviousPage">@PreviousButtonText</button>
             </div>
         }
         @if (IsLastStep())
         {
             <div class="pull-right">
-                <button @key="Random.Shared.Next().ToString()" class="btn-wizard btn-wizard-next btn-wizard-fill btn-wizard-wd" style="background-color: @FinishButtonColor" type="button" @onclick="@Finished" disabled="@FinishButtonDisabled">@FinishedButtonText</button>
+                <button class="btn-wizard btn-wizard-next btn-wizard-fill btn-wizard-wd" style="background-color: @FinishButtonColor" type="button" disabled="@FinishButtonDisabled" @onclick="@Finished">@FinishedButtonText</button>
             </div>
         }
         else
         {
             <div class="pull-right">
-                <button @key="Random.Shared.Next().ToString()" class="btn-wizard btn-wizard-next btn-wizard-fill btn-wizard-wd" style="background-color: @NextButtonColor" type="button" @onclick="@NextPage" disabled="@NextButtonDisabled">@NextButtonText</button>
+                <button class="btn-wizard btn-wizard-next btn-wizard-fill btn-wizard-wd" style="background-color: @NextButtonColor" type="button" disabled="@NextButtonDisabled" @onclick="@NextPage">@NextButtonText</button>
             </div>
         }
         <div class="clearfix"></div>
