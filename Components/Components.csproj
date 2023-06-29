@@ -8,9 +8,9 @@
 		<Description>Blazor UI Components for common tasks</Description>
 		<RepositoryUrl>https://github.com/CrahunGit/BlazorComponents</RepositoryUrl>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-		<Version>3.1.0</Version>
-		<AssemblyVersion>3.1.0.0</AssemblyVersion>
-		<FileVersion>3.1.0.0</FileVersion>
+		<Version>3.2.0</Version>
+		<AssemblyVersion>3.2.0.0</AssemblyVersion>
+		<FileVersion>3.2.0.0</FileVersion>
 	</PropertyGroup>
 
 	<ItemGroup>

@@ -1,5 +1,5 @@
 ﻿<div>
-    <Wizard Title="Wizard" Colors="#4723d9" FinishButtonColor="#4723d9">
+    <Wizard Title="Wizard" Colors="#4723d9" FinishButtonColor="#4723d9" NextButtonDisabled="disabled">
         <Step Name="Step 1">
             <div>Hi step 1</div>
         </Step>
@@ -36,3 +36,19 @@
         </Step>
     </Wizard>
 </div>
+
+@code{
+    private bool disabled = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(2000);
+        disabled = true;
+        StateHasChanged();
+
+
+        await Task.Delay(2000);
+        disabled = false;
+        StateHasChanged();
+    }
+}
