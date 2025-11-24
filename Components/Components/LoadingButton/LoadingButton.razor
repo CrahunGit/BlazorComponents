@@ -1,6 +1,6 @@
 ﻿@namespace CrahunComponents
 
-<button disabled="@IsLoading" @onclick="@(async () => await OnClick.InvokeAsync())" @attributes="AdditionalProperties">
+<button disabled="@(IsLoading || DisabledExpression)" @onclick="@(async () => await OnClick.InvokeAsync())" @attributes="AdditionalProperties">
     @if (IsLoading)
     {
         if (LoadingTemplate is not null)
@@ -10,7 +10,7 @@
         else
         {
             <div class="d-flex">
-                <span class="spinner-border ms-auto me-auto" role="status" style="color: lightgray">
+                <span class="spinner-border me-auto ms-auto" role="status" style="color: lightgray">
                     <span class="sr-only">Loading...</span>
                 </span>
             </div>
@@ -38,6 +38,9 @@
 
     [Parameter]
     public EventCallback<bool> OnClick { get; set; }
+
+    [Parameter]
+    public bool DisabledExpression { get; set; }
 
     [Parameter(CaptureUnmatchedValues = true)]
     public Dictionary<string, object> AdditionalProperties { get; set; }
